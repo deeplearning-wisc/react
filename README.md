@@ -1,6 +1,6 @@
 # ReAct: Out-of-distribution Detection With Rectified Activations
 
-This is the source code for paper [ReAct: Out-of-distribution Detection With Rectified Activations](TO BE ADDED)
+This is the source code for paper [ReAct: Out-of-distribution Detection With Rectified Activations](https://openreview.net/pdf?id=IBVBtz_sRSm)
 by Yiyou Sun, Chuan Guo and Yixuan Li.
 
 In this work, we propose ReAct—a simple technique for reducing model overconfidence on OOD data. 
