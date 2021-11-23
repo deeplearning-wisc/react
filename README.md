@@ -60,7 +60,7 @@ python eval.py --threshold 1e6  #we set the threshold close to infinity, so it i
 
 ## OOD Detection Results
 
-MOS achieves state-of-the-art performance averaged on the 4 OOD datasets.
+ReACT achieves state-of-the-art performance averaged on the 4 OOD datasets.
 
 ![results](figs/results.png)
 
