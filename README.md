@@ -1,7 +1,7 @@
 # ReAct: Out-of-distribution Detection With Rectified Activations
 
-This is the source code for our paper [ReAct: Out-of-distribution Detection With Rectified Activations](TO BE ADDED)
-by Yiyou Sun and Sharon Li.
+This is the source code for paper [ReAct: Out-of-distribution Detection With Rectified Activations](https://openreview.net/pdf?id=IBVBtz_sRSm)
+by Yiyou Sun, Chuan Guo and Yixuan Li.
 
 In this work, we propose ReAct—a simple technique for reducing model overconfidence on OOD data. 
 Our method is motivated by novel analysis on internal activations of neural networks, which displays highly distinctive 
@@ -60,18 +60,18 @@ python eval.py --threshold 1e6  #we set the threshold close to infinity, so it i
 
 ## OOD Detection Results
 
-MOS achieves state-of-the-art performance averaged on the 4 OOD datasets.
+ReACT achieves state-of-the-art performance averaged on the 4 OOD datasets.
 
 ![results](figs/results.png)
 
 ## Citation
 
-If you use our codebase or OOD datasets, please cite our work:
+If you use our codebase, please cite our work:
 ```
-@inproceedings{yiyou2021react,
+@inproceedings{sun2021react,
   title={ReAct: Out-of-distribution Detection With Rectified Activations},
-  author={Sun, Yiyou and Li, Yixuan},
-  booktitle={Thirty-Fifth Conference on Neural Information Processing Systems},
+  author={Sun, Yiyou and Guo, Chuan and Li, Yixuan},
+  booktitle={Advances in Neural Information Processing Systems},
   year={2021}
 }
 ```
