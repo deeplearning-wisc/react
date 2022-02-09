@@ -1,0 +1,6 @@
+torch==1.10 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+torchvision==0.11 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+numpy
+easydict
+fvcore
+sklearn
