@@ -1,8 +1,10 @@
+
 import torch
 import torch.nn as nn
 import math
 import torch.utils.model_zoo as model_zoo
 import torch.nn.functional as F
+from sklearn.decomposition import PCA
 __all__ = ['ResNet', 'resnet18', 'resnet50', ]
 
 
@@ -207,6 +209,8 @@ class AbstractResNet(nn.Module):
         self.bn1 = normalization(64)
         self.relu = nn.ReLU(inplace=False)
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+        #add pca attribution to self
+        self.pca = PCA(n_components = 25)
         self.layer1 = self._make_layer(block, 64, layers[0])
         self.layer2 = self._make_layer(block, 128, layers[1], stride=2)
         self.layer3 = self._make_layer(block, 256, layers[2], stride=2)
@@ -307,9 +311,23 @@ class ResNet(AbstractResNet):
         x = self.maxpool(self.relu(self.bn1(self.conv1(x))))
         x= self.layer4(self.layer3(self.layer2(self.layer1(x))))
         x = self.avgpool(x)
-        x = x.clip(max=threshold)
-        x = x.view(x.size(0), -1)
-        x = self.fc(x)
+        #x = x.clip(max=threshold)
+        #here delete the threshold limitation
+        #transform to cpu
+        x = x.cpu().numpy()
+        x = x.reshape(x.shape[0],x.shape[1]*x.shape[2]*x.shape[3])
+        x = self.pca.fit_transform(x)
+        print('------\n')
+        print(x,'\n x after clip')
+        print('PCA explained variance ratio:', self.pca.explained_variance_ratio_)
+        x = torch.Tensor(x)
+        print(x.shape,'shape of x \n')
+        x = x.cuda()
+        print('------\n')
+        print(x,'\n x.tensor')
+        print(x.size(0),'x.size(0)')
+        #x = x.view(-1, 25)
+        x = nn.Linear(25*25,1000)
         return x
 
     def feature_list(self, x):
