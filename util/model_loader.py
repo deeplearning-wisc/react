@@ -17,10 +17,10 @@ def get_model(args, num_classes, load_ckpt=True):
     else:
         if args.model_arch == 'resnet18':
             from models.resnet import resnet18_cifar
-            model = resnet18_cifar(num_classes=num_classes, method=args.method, p=args.p)
+            model = resnet18_cifar(num_classes=num_classes, method=args.method)
         elif args.model_arch == 'resnet50':
             from models.resnet import resnet50_cifar
-            model = resnet50_cifar(num_classes=num_classes, method=args.method, p=args.p)
+            model = resnet50_cifar(num_classes=num_classes, method=args.method)
         else:
             assert False, 'Not supported model arch: {}'.format(args.model_arch)
 

@@ -116,7 +116,8 @@ def get_loader_out(args, dataset=(''), config_type='default', split=('train', 'v
         val_dataset = dataset[1]
         batch_size = args.batch_size
         if val_dataset == 'SVHN':
-            val_ood_loader = torch.utils.data.DataLoader(SVHN('datasets/ood_datasets/svhn/', split='test', transform=transform_test, download=False),
+            from util.svhn_loader import SVHN
+            val_ood_loader = torch.utils.data.DataLoader(SVHN('datasets/ood_data/svhn/', split='test', transform=transform_test, download=False),
                                                        batch_size=batch_size, shuffle=False,
                                                         num_workers=2)
         elif val_dataset == 'dtd':
@@ -144,7 +145,7 @@ def get_loader_out(args, dataset=(''), config_type='default', split=('train', 'v
                 torchvision.datasets.ImageFolder(os.path.join('./datasets/id_data/imagenet', 'val'), config.transform_test_largescale),
                 batch_size=config.batch_size, shuffle=True, **kwargs)
         else:
-            val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder("./datasets/ood_datasets/{}".format(val_dataset),
+            val_ood_loader = torch.utils.data.DataLoader(torchvision.datasets.ImageFolder("./datasets/ood_data/{}".format(val_dataset),
                                                           transform=transform_test), batch_size=batch_size, shuffle=False, num_workers=2)
 
     return EasyDict({

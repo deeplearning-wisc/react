@@ -42,7 +42,7 @@ def eval_ood_detector(args):
     base_dir = args.base_dir
     in_dataset = args.in_dataset
     method = args.method
-    method_args = args.method_args
+    # method_args = args.method_args
     name = args.name
 
     in_save_dir = os.path.join(base_dir, in_dataset, method, name)
@@ -51,7 +51,7 @@ def eval_ood_detector(args):
 
     loader_in_dict = get_loader_in(args, split=('val'))
     loader, num_classes = loader_in_dict.val_loader, loader_in_dict.num_classes
-    method_args['num_classes'] = num_classes
+    # method_args['num_classes'] = num_classes
     model = get_model(args, num_classes, load_ckpt=True)
 
 
@@ -60,10 +60,10 @@ def eval_ood_detector(args):
     model.eval()
 
     count = 0
-    # lim = 2000
+    lim = 2000
     for j, data in enumerate(loader):
-        # if count > lim:
-        #     break
+        if count > lim:
+            break
         images, labels = data
         images = images.cuda()
         # labels = labels.cuda()
